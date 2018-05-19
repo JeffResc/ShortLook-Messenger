@@ -1,5 +1,5 @@
 #import "ShortLook-API.h"
 
 @interface DDNotificationTwitterContactPhotoProvider : NSObject <DDNotificationContactPhotoProviding>
-- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(NSObject<DDNotificationDisplayable> *)notification;
+- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification;
 @end
