@@ -1,8 +1,10 @@
+PACKAGE_VERSION = 1.0
+DEBUG = 0
 ARCHS = armv7 arm64
 
 include $(THEOS)/makefiles/common.mk
 
-BUNDLE_NAME = ShortLook-Twitter
+BUNDLE_NAME = ShortLook-Messenger
 $(BUNDLE_NAME)_CFLAGS = -fobjc-arc
 $(BUNDLE_NAME)_FILES = $(wildcard *.m)
 $(BUNDLE_NAME)_FRAMEWORKS = UIKit
