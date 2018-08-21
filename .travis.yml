@@ -1,0 +1,15 @@
+os: osx
+language: objective-c
+sudo: false
+
+env:
+  global:
+    - THEOS=~/theos
+
+before_install:
+  - brew update
+  - brew install dpkg ldid
+  - git clone --recursive git://github.com/theos/theos.git ~/theos
+
+script:
+  - make
