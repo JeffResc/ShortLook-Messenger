@@ -1,4 +1,5 @@
 # Facebook Messenger Contact Photo Provider for ShortLook
+[![Build Status](https://travis-ci.org/JeffResc/ShortLook-Messenger.svg?branch=master)](https://travis-ci.org/JeffResc/ShortLook-Messenger)
 
 Show Facebook Messenger users' profile pictures in ShortLook when you receive a Messenger notification!
 
