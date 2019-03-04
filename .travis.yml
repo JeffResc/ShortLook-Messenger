@@ -11,12 +11,13 @@ before_install:
   - git clone --recursive git://github.com/theos/theos.git ~/theos
 script:
   - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
+  - "export DESCRIPTION=$(awk '/## v$VERSION/{getline; print}' logfile)"
   - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$VERSION\"'_iphoneos-arm.deb'"
   - make package
 before_deploy:
   - git config --local user.name "Jeff Rescignano"
   - git config --local user.email "jeff@jeffresc.com"
-  - git tag v$VERSION
+  - git tag -a v$VERSION
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
