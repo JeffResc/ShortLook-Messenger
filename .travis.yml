@@ -13,11 +13,10 @@ script:
   - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
   - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$VERSION\"'_iphoneos-arm.deb'"
   - make package
-before-deploy:
+before_deploy:
   - git config --local user.name "Jeff Rescignano"
   - git config --local user.email "jeff@jeffresc.com"
-  - export TRAVIS_TAG=v$VERSION
-  - git tag $TRAVIS_TAG
+  - git tag v$VERSION
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
