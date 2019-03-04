@@ -17,7 +17,7 @@ script:
 before_deploy:
   - git config --local user.name "Jeff Rescignano"
   - git config --local user.email "jeff@jeffresc.com"
-  - git tag -a v$VERSION
+  - git tag -a v$VERSION -m "$DESCRIPTION"
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
