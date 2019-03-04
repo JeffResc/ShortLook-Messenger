@@ -16,6 +16,8 @@ script:
   - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$(grep 'Version: ' control | sed 's/^.*: //')\"'_iphoneos-arm.deb'"
   - make package
 before-deploy:
+  - git config --local user.name "Jeff Rescignano"
+  - git config --local user.email "jeff@jeffresc.com"
   - "git tag v$(grep 'Version: ' control | sed 's/^.*: //')"
 deploy:
   provider: releases
