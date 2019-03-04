@@ -16,7 +16,8 @@ script:
 before-deploy:
   - git config --local user.name "Jeff Rescignano"
   - git config --local user.email "jeff@jeffresc.com"
-  - git tag v$VERSION
+  - export TRAVIS_TAG=v$VERSION
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
