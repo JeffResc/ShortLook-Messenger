@@ -13,7 +13,7 @@ script:
   - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$(grep 'Version: ' control | sed 's/^.*: //')\"'_iphoneos-arm.deb'"
   - make package
 before-deploy:
-  - git tag v$(grep 'Version: ' control | sed 's/^.*: //')
+  - "git tag v$(grep 'Version: ' control | sed 's/^.*: //')"
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
