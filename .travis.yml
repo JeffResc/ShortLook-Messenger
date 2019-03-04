@@ -10,12 +10,13 @@ before_install:
   - brew install dpkg ldid
   - git clone --recursive git://github.com/theos/theos.git ~/theos
 script:
-  - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$(grep 'Version: ' control | sed 's/^.*: //')\"'_iphoneos-arm.deb'"
+  - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
+  - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$VERSION\"'_iphoneos-arm.deb'"
   - make package
 before-deploy:
   - git config --local user.name "Jeff Rescignano"
   - git config --local user.email "jeff@jeffresc.com"
-  - "git tag v$(grep 'Version: ' control | sed 's/^.*: //')"
+  - git tag v$VERSION
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
