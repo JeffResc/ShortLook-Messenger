@@ -17,5 +17,3 @@ deploy:
   api_key: $GITHUB_OAUTH_TOKEN
   file: $FILENAME
   skip_cleanup: true
-  on:
-    tags: true
