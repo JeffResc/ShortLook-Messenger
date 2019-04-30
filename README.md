@@ -12,3 +12,5 @@ You can download this Contact Photo Provider for ShortLook from the [Dynastic Re
 Initial Release
 ## v1.0.1
 Updated the way SpringBoard is restarted in order to update for newer devices.
+## v1.0.2
+Added arm64e support.
