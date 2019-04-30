@@ -8,6 +8,7 @@ env:
 before_install:
   - brew update
   - brew install dpkg ldid
+  - softwareupdate --install -a
   - git clone --recursive git://github.com/theos/theos.git ~/theos
 script:
   - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
