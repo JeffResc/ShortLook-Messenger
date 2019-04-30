@@ -1,4 +1,5 @@
 os: osx
+osx_image: xcode10.2
 language: objective-c
 sudo: false
 env:
@@ -8,7 +9,6 @@ env:
 before_install:
   - brew update
   - brew install dpkg ldid
-  - softwareupdate --list
   - git clone --recursive git://github.com/theos/theos.git ~/theos
 script:
   - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
