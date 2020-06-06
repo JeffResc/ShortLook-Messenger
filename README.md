@@ -8,9 +8,4 @@ Show Facebook Messenger users' profile pictures in ShortLook when you receive a 
 You can download this Contact Photo Provider for ShortLook from the [Dynastic Repo](https://repo.dynastic.co/package/shortlook-messenger).
 
 # Changelog
-## v1.0
-Initial Release
-## v1.0.1
-Updated the way SpringBoard is restarted in order to update for newer devices.
-## v1.0.2
-Added A12/arm64e support.
+Changelog has been moved to [the releases tab](https://github.com/JeffResc/ShortLook-Messenger/releases/).
