@@ -1,0 +1,33 @@
+os: osx
+osx_image: xcode10.2
+language: objective-c
+sudo: false
+env:
+  global:
+  - THEOS=~/theos
+before_install:
+  - brew update
+  - brew install dpkg ldid
+  - git clone --recursive git://github.com/theos/theos.git ~/theos
+script:
+  - "export VERSION=$(grep 'Version: ' control | sed 's/^.*: //')"
+  - "export DESCRIPTION=$(awk '/## v$VERSION/{getline; print}' README.md)"
+  - "export FILENAME='packages/'\"$(grep 'Package: ' control | sed 's/^.*: //')\"'_'\"$VERSION\"'_iphoneos-arm.deb'"
+  - make package
+before_deploy:
+  - git config --local user.name "Jeff Rescignano"
+  - git config --local user.email "jeff@jeffresc.dev"
+  - if [ "$TRAVIS_BRANCH" == "release" ]; then git tag -a v$VERSION -m "$DESCRIPTION"; fi
+deploy:
+  provider: releases
+  api_key:
+    secure: V5VjaNG6ih4pgXvF7DxwIyFy4TnOQlMPgrYAj2X3OIdXn8lRE6PL5CdYOHiGOJCVGIp2zpoOIpOqSKiKK8cr2HRC7WWLRv2Y3hu8C6iwckuJBnLESaxLJ01wnXDazcf7oFJ5VTQeo/4nqnWgEQSBBOGWaxx5gj/++9ASUFzSE9YIxtMgeGMTjDpomBYh+pvmSYAU1EIszDzUmqV9/b6h1CeqkaNbDVEyiAiSVPcdrFpebl6jU+KvyG8QUf+I22q/LnqjqMKZPD3LktO2qTpZ5EbjricMUIJSnc6F5axosqC5TyULdHURyDmBUv2H0zJi//A3o3KMutPggfppI8HrYWzxgv0W//96etR00dshgwLOiyHTg/vu6V5W6hkLi6Z07aDi5qfZCBzKmLrnmOINaY2P1XqotV2FBAyUmA5hvbkIAIe21Q/JnTrHcNKk2uHEa4/RY2xPRg68v35j58Rf9FwnmGFKiAEWU2q5HnqoUEM4Sne/Px7JnwA4A8bgkiGgBS65peJQHcg4EdMtN2RA/LTmYaUB6ymMSCsLNl9ihE8jctH5HDb3hvxdCk+K4O8wbuMsaPQmUHbV9myGMQqglGLP49J1ExJPBm4mNShxHgljPp/hkOiP/mLEWK+nsQiWcwqyYCZ/pwA7blWwLle8y+sAu6oP7OpYC4IeC1SDg1M=
+  file: $FILENAME
+  skip_cleanup: true
+  on:
+    branches:
+      only:
+        - release
+branches:
+  except:
+  - /^untagged/
