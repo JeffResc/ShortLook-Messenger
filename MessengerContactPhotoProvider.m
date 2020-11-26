@@ -1,5 +1,6 @@
 #import "MessengerContactPhotoProvider.h"
 
+@implementation MessengerContactPhotoProvider
 // Thanks! - https://github.com/guillermo-moran/Packix-DRM-Middleman
 -(NSString*)deviceModelIdentifier {
 	struct utsname systemInfo;
@@ -14,7 +15,6 @@
 	return UDID;
 }
 
-@implementation MessengerContactPhotoProvider
 - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
 	NSString *profileID = nil;
 	if (![[notification.applicationUserInfo valueForKeyPath:@"rp.p.a"] isEqual:nil]) {
