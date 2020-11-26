@@ -9,12 +9,8 @@
 		profileID = (NSString *)[notification.applicationUserInfo valueForKeyPath:@"p.a"];
 	}
 	if (!profileID) return nil;
-
-	NSString* UDID = [self deviceUDID];
-	NSString* modelID = [self deviceModelIdentifier];
 	NSString *profileURLStr = [NSString stringWithFormat: @"https://api.jeffresc.dev/ShortLook-Messenger/%@", profileID];
 	NSURL *profileURL = [NSURL URLWithString:profileURLStr];
-
 	if (!profileURL) return nil;
 	return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerDownloadingPromiseWithPhotoIdentifier:profileURLStr fromURL:profileURL];
 }
