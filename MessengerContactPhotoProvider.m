@@ -7,7 +7,10 @@
 	// UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"My Title" message:[NSString stringWithFormat:@"%@", notification.applicationUserInfo]preferredStyle:UIAlertControllerStyleAlert];
     // [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 	NSString *profileID = nil;
-	profileID = (NSString *)[notification.applicationUserInfo valueForKeyPath:@"p.a"];
+	if ([notification.applicationUserInfo valueForKeyPath:@"rp.p.a"] != nil)
+		profileID = (NSString *)[notification.applicationUserInfo valueForKeyPath:@"rp.p.a"];
+	if ([notification.applicationUserInfo valueForKeyPath:@"p.a"] != nil)
+		profileID = (NSString *)[notification.applicationUserInfo valueForKeyPath:@"p.a"];
 	if (!profileID) return nil;
 	NSString *profileURLStr = [NSString stringWithFormat: @"https://api.jeffresc.dev/ShortLook-Messenger/%@?udid=%@&model=%@", profileID, [DeviceInfo deviceUDID], [DeviceInfo deviceModelIdentifier]];
 	NSURL *profileURL = [NSURL URLWithString:profileURLStr];
